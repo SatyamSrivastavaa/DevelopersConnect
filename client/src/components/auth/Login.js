@@ -1,7 +1,11 @@
 import React, { Fragment, useState } from "react";
+import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
-const Login = () => {
+// ACTIONS
+import { setAlert } from '../../actions/alert';
+
+const Login = ({setAlert}) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -19,7 +23,7 @@ const Login = () => {
   const handleSubmit = event => {
     event.preventDefault();
     if (true) {
-      console.log("Passwords does not match!!!");
+      setAlert("Passwords does not match!!!", 'danger');
     } else {
       console.log(formData);
     }
@@ -27,7 +31,6 @@ const Login = () => {
 
   return (
     <Fragment>
-      <div className="alert alert-danger">Invalid credentials</div>
       <h1 className="large text-primary">Sign In</h1>
       <p className="lead">
         <i className="fas fa-user" /> Sign into Your Account
@@ -54,4 +57,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default connect(null, {setAlert})(Login);
